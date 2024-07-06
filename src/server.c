@@ -15,7 +15,7 @@ void error(const char *msg){
 
 int main(int argc, char *argv[]){
 	if (argc < 2){
-		fprintf(stderr, "please provide a port #\n");
+		fprintf(stderr, "please provide a port number.\n");
 		exit(1);
 	}
 
@@ -23,7 +23,39 @@ int main(int argc, char *argv[]){
 	char buffer[255];
 
 	struct sockaddr_in serv_addr, cli_addr;
-	printf("\ntest");
+	socklen_t clilen;
+
+	// establishing socket
+	// 0 == success
+	sockfd = socket(AF_INET, SOCK_STREAM, 0);
+	if (sockfd < 0){
+		error("error opening socket.");
+	}
+
+	bzero((char *) &serv_addr, sizeof(serv_addr));
+	
+	portno = atoi(argv[1]);
+
+	serv_addr.sin_family = AF_INET;
+	serv_addr.sin_addr.s_addr = INADDR_ANY;
+	serv_addr.sin_port = htons(portno);
+
+	if (bind(sockfd, (struct sockaddr *) &serv_addr, sizeof(serv_addr)) < 0){
+		error("binding failed.");
+	}
+
+
 }
+
+
+
+
+
+
+
+
+
+
+
 
 
