@@ -14,6 +14,16 @@ void error(const char *msg){
 }
 
 int main(int argc, char *argv[]){
-    printf("test");
+	if (argc < 2){
+		fprintf(stderr, "please provide a port #\n");
+		exit(1);
+	}
+
+	int sockfd, newsockfd, portno;
+	char buffer[255];
+
+	struct sockaddr_in serv_addr, cli_addr;
+	printf("\ntest");
 }
+
 
