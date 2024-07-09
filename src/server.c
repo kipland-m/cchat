@@ -8,12 +8,16 @@
 
 #define PORT 9000
 
+//  Creating error function to handle errors
 void error(const char *msg){
 	perror(msg);
 	exit(1);
 }
 
 int main(int argc, char *argv[]){
+	// if command line args are less than 2, raise error
+	// 1 = the command itself
+	// 2 = given port number
 	if (argc < 2){
 		fprintf(stderr, "please provide a port number.\n");
 		exit(1);
