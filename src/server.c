@@ -17,10 +17,14 @@ int main(){
 
 	 struct pollfd[2] = {
 		 {
-			 0,
+			 0, // file descriptor for stdin
+			 POLLIN, // informs there is data to be read
+			 0
 		 },
 		 {
-			0,
+			clientfd, // client file descriptor
+			POLLIN,
+			0
 		 }	
 	 };
 
